@@ -1,6 +1,10 @@
 package com.jplan.jplan.entity;
 
-import java.sql.Date;
+import java.util.Date;
+
+import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,14 +20,24 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_product")
-    private Long id;
+    private String id;
 
     @Column(name = "product_name")
     private String productName;
 
     @Column(name = "creation_date")
+    @CreationTimestamp
     private Date date;
+
+    public Product() {
+    }
+
+    public Product(String productName, Date date) {
+        this.id = UUID.randomUUID().toString();
+        this.productName = productName;
+        this.date = date;
+    }
 
 }
