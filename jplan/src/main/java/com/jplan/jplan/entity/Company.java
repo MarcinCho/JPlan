@@ -1,5 +1,7 @@
 package com.jplan.jplan.entity;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,9 +16,9 @@ import lombok.Data;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "company_id")
-    private Long id;
+    private String id;
 
     @Column(name = "company_name")
     private String comapanyName;
@@ -27,8 +29,8 @@ public class Company {
     public Company() {
     }
 
-    public Company(Long id, String comapanyName, String email) {
-        this.id = id;
+    public Company(String id, String comapanyName, String email) {
+        this.id = UUID.randomUUID().toString();
         this.comapanyName = comapanyName;
         this.email = email;
     }
