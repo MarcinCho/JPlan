@@ -23,16 +23,16 @@ public class Company {
     @Column(name = "company_name")
     private String comapanyName;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "company_email")
+    private String companyEmail;
 
     public Company() {
     }
 
-    public Company(String id, String comapanyName, String email) {
+    public Company(String id, String comapanyName, String companyEmail) {
         this.id = UUID.randomUUID().toString();
         this.comapanyName = comapanyName;
-        this.email = email;
+        this.companyEmail = companyEmail;
     }
 
 }
