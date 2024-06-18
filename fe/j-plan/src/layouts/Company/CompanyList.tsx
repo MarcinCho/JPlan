@@ -4,6 +4,7 @@ import { Company } from "./Company";
 
 export const CompanyList = () => {
   const [companies, setCompanies] = useState<CompanyModel[]>([]);
+  const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchCompanyList = async () => {
@@ -15,13 +16,13 @@ export const CompanyList = () => {
       }
 
       const responseJsonCompanies = await responseCompanies.json();
-      const responseData = responseJsonCompanies._embedded.reviews;
+      const responseData = responseJsonCompanies._embedded.companies;
 
       const loadedCompanies: CompanyModel[] = [];
 
       for (const key in responseData) {
         loadedCompanies.push({
-          companyId: responseData[key].companyId,
+          companyId: responseData[key].Id,
           companyName: responseData[key].companyName,
           companyEmail: responseData[key].ComapnyEmail,
         });
@@ -30,19 +31,29 @@ export const CompanyList = () => {
       setCompanies(loadedCompanies);
     };
 
-    // fetchCompanyList().catch((error.any => ));
+    fetchCompanyList().catch((error: any) => {
+      setHttpError(error.message);
+    });
   }, []);
+
+  if (httpError) {
+    return (
+      <div>
+        <p>{httpError}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container m-5">
-      <div className="row">{companies.map((company)=> (<Company: company={company} key={company.id}))}</div>
+      <div className="row">
+        {companies.map((company) => (
+          <Company company={company} key={company.companyId} />
+        ))}
+      </div>
     </div>
   );
 };
-
-//       setReviews(loadedReviews);
-//       setIsLoading(false);
-//     };
 
 //     fetchBookReviews().catch((error: any) => {
 //       setIsLoading(false);
