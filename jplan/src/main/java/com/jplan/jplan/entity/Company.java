@@ -21,7 +21,7 @@ public class Company {
     private String id;
 
     @Column(name = "company_name")
-    private String comapanyName;
+    private String companyName;
 
     @Column(name = "company_email")
     private String companyEmail;
@@ -31,7 +31,7 @@ public class Company {
 
     public Company(String id, String comapanyName, String companyEmail) {
         this.id = UUID.randomUUID().toString();
-        this.comapanyName = comapanyName;
+        this.companyName = comapanyName;
         this.companyEmail = companyEmail;
     }
 

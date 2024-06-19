@@ -11,10 +11,9 @@ export const CompanyList = () => {
       const companyUrl: string = `http://localhost:8080/api/companies`;
       const responseCompanies = await fetch(companyUrl);
 
-      if (!responseCompanies) {
+      if (!responseCompanies.ok) {
         throw new Error("Somethin went wrong");
       }
-
       const responseJsonCompanies = await responseCompanies.json();
       const responseData = responseJsonCompanies._embedded.companies;
 
@@ -22,9 +21,9 @@ export const CompanyList = () => {
 
       for (const key in responseData) {
         loadedCompanies.push({
-          companyId: responseData[key].Id,
+          companyId: responseData[key].id,
           companyName: responseData[key].companyName,
-          companyEmail: responseData[key].ComapnyEmail,
+          companyEmail: responseData[key].companyEmail,
         });
       }
 
@@ -54,54 +53,3 @@ export const CompanyList = () => {
     </div>
   );
 };
-
-//     fetchBookReviews().catch((error: any) => {
-//       setIsLoading(false);
-//       setHttpError(error.message);
-//     });
-//   }, [currentPage]);
-
-//   if (isLoading) {
-//     return <SpinnnerLoading />;
-//   }
-
-//   if (httpError) {
-//     return (
-//       <div className="container m-5">
-//         <p></p>
-//       </div>
-//     );
-//   }
-
-//   const indexOfLastReview: number = currentPage * reviewsPerPage;
-//   const indexOfFirstReview: number = indexOfLastReview - reviewsPerPage;
-
-//   let lastItem =
-//     reviewsPerPage * currentPage <= totalAmountOfReviews
-//       ? reviewsPerPage * currentPage
-//       : totalAmountOfReviews;
-
-//   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-//   return (
-//     <div className="container m-5">
-//       <div>
-//         <h3>Comments: ({reviews.length})</h3>
-//       </div>
-//       <p>
-//         {indexOfFirstReview + 1} to {lastItem} of {totalAmountOfReviews} items:
-//       </p>
-//       <div className="row">
-//         {reviews.map((review) => (
-//           <Review review={review} key={review.id} />
-//         ))}
-//       </div>
-//       {totalPages > 1 && (
-//         <Pagination
-//           currentPage={currentPage}
-//           totalPages={totalPages}
-//           paginate={paginate}
-//         />
-//       )}
-//     </div>
-//   );
