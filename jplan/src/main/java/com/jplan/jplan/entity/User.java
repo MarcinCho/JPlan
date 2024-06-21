@@ -39,24 +39,27 @@ public class User {
     private int roleId;
 
     @Column(name = "user_password")
-    private String userPass;
+    private String userPassword;
 
     @Column(name = "user_date_created")
     @CreationTimestamp
     private Date userDateCreated;
 
+    @Column(name = "user_name")
+    private String userName;
+
     public User() {
     }
 
     public User(String userId, String firstName, String lastName, String companyId, String userEmail, int roleId,
-            String userPass) {
+            String userPassword) {
         this.userId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyId = companyId;
         this.userEmail = userEmail;
         this.roleId = roleId;
-        this.userPass = userPass;
+        this.userPassword = userPassword;
     }
 
 }

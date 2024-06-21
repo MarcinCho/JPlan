@@ -1,27 +1,28 @@
-package com.jplan.jplan.config;
+// package com.jplan.jplan.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+// import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+// import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
-import com.jplan.jplan.entity.Company;
+// import com.jplan.jplan.entity.Company;
 
-@Configuration
-public class RestConfiguration implements RepositoryRestConfigurer {
+// @Configuration
+// public class RestConfiguration implements RepositoryRestConfigurer {
 
-    private String allowedOrigin = "http://localhost:3000";
+// private String allowedOrigin = "http://localhost:3000";
 
-    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+// public void configureRepositoryRestConfiguration(RepositoryRestConfiguration
+// config, CorsRegistry cors) {
 
-        config.exposeIdsFor(Company.class);
+// config.exposeIdsFor(Company.class);
 
-        cors.addMapping(config.getBasePath() +
-                "/**").allowedOrigins(allowedOrigin);
+// cors.addMapping(config.getBasePath() +
+// "/**").allowedOrigins(allowedOrigin);
 
-    }
+// }
 
-}
+// }
 
 // public void configureRepositoryRestConfiguration(RepositoryRestConfiguration
 // config, CorsRegistry cors) {
