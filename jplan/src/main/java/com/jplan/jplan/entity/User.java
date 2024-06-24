@@ -35,8 +35,8 @@ public class User {
     @Column(name = "user_email")
     private String userEmail;
 
-    @Column(name = "role_id")
-    private int roleId;
+    @Column(name = "role")
+    private String roleId;
 
     @Column(name = "user_password")
     private String userPassword;
