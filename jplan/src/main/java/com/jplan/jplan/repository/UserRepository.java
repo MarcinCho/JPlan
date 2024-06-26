@@ -6,6 +6,7 @@ import com.jplan.jplan.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
-    User findByUserName(String userName);
+    User findByUsername(String username);
 
+    User findByUserEmail(String userEmail);
 }
