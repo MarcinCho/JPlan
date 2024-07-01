@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,14 +27,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
 
-    @Column(name = "user_id")
-    private String userId;
-
     @Id
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "first_name")
@@ -42,10 +40,10 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "company_id")
-    private String companyId;
+    // @Column(name = "company_id")
+    // private String companyId;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", nullable = false)
     private String userEmail;
 
     @Column(name = "user_date_created")
@@ -55,5 +53,18 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+    private Company company;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private Set<Project> projects = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "User [username=" + username + ", roles=" + roles + ", company=" + company + "]";
+    }
 
 }

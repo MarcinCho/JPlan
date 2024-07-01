@@ -1,4 +1,4 @@
-package com.jplan.jplan.service;
+package com.jplan.jplan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import com.jplan.jplan.entity.UserDetailsImp;
 import com.jplan.jplan.repository.UserRepository;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

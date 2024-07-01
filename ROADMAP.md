@@ -1,5 +1,10 @@
 ### Roadmap of features and stages in j plan
 - ~~start repo and procjects create db~~
+- ~~see employees/users of company~~
+- user see company details
+- user/admin/menager - see projects [user only if attached]
+
+
 # MVP
 * User:
   - create (admin)
