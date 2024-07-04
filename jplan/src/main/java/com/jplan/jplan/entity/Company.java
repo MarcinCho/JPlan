@@ -52,14 +52,15 @@ public class Company {
     @CreationTimestamp
     private Date dateCreated;
 
-    // @JsonIgnore
+    @JsonIgnore
     // @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch =
     // FetchType.EAGER)
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     // @JoinColumn(name = "company_id")
     private List<User> users;
 
-    @OneToMany(mappedBy = "companyProjects", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "companyProjects", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     // @JoinColumn(name = "company_id")
     private List<Project> projects;
 

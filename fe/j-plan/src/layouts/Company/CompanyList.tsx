@@ -8,14 +8,15 @@ export const CompanyList = () => {
 
   useEffect(() => {
     const fetchCompanyList = async () => {
-      const companyUrl: string = `http://localhost:8080/api/companies`;
+      const companyUrl: string = `http://localhost:8080/client/companies`;
       const responseCompanies = await fetch(companyUrl);
 
       if (!responseCompanies.ok) {
         throw new Error("Somethin went wrong");
       }
       const responseJsonCompanies = await responseCompanies.json();
-      const responseData = responseJsonCompanies._embedded.companies;
+      // const responseData = responseJsonCompanies._embedded.companies;
+      const responseData = responseJsonCompanies;
 
       const loadedCompanies: CompanyModel[] = [];
 
@@ -24,6 +25,7 @@ export const CompanyList = () => {
           companyId: responseData[key].id,
           companyName: responseData[key].companyName,
           companyEmail: responseData[key].companyEmail,
+          dateCreated: responseData[key].dateCreated,
         });
       }
 
