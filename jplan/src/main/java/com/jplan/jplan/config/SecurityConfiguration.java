@@ -69,20 +69,20 @@ public class SecurityConfiguration {
         http
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers(HttpMethod.GET, "/api/*...").hasAnyAuthority(USER, ADMIN)
-                        .requestMatchers(HttpMethod.POST, "/api/*....").hasAnyAuthority(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/users").hasAnyAuthority(USER)
+                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority(USER, ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/client/companies").hasAnyAuthority(USER)
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasAnyAuthority(USER)
-                        // .requestMatchers("/", "/error", "/csrf", "swagger-ui.html",
-                        // "/swagger-ui/**").permitAll()
-                        .requestMatchers("client/**", "auth/**").permitAll())
+                        .requestMatchers(HttpMethod.DELETE, "/auth/user").hasAnyAuthority(USER)
+                        .requestMatchers(HttpMethod.GET, "auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "auth/**").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(
                         sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // .exceptionHandling(exception ->
-                // exception.authenticationEntryPoint(unauthorizedHandler))
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .cors(Customizer.withDefaults())
-                // .formLogin(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

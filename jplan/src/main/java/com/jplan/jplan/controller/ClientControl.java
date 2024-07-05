@@ -57,7 +57,7 @@ public class ClientControl {
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasAuthority('GLOBAL_ADMIN')")
     public String userAccess() {
         return "User Content.";
     }
