@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CompanyModel from "../../models/CompanyModel";
+import CompanyModel from "../models/CompanyModel";
 import { Company } from "./Company";
 
 export const CompanyList = () => {

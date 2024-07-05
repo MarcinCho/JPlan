@@ -1,4 +1,4 @@
-import CompanyModel from "../../models/CompanyModel";
+import CompanyModel from "../models/CompanyModel";
 
 export const Company: React.FC<{ company: CompanyModel }> = (props) => {
   return (

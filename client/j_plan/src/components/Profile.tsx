@@ -13,7 +13,7 @@ export const Profile: React.FC = () => {
                 </h3>
             </header>
             <p>
-                <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} .... {currentUser.accessToken.substring(currentUser.accessToken.length - 20)}
+                <strong>Token:</strong> {currentUser.token.substring(0, 20)} .... {currentUser.token.substring(currentUser.token.length - 20)}
             </p>
             <p>
                 <strong>Email </strong> {currentUser.email}
