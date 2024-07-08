@@ -1,4 +1,4 @@
-package com.jplan.jplan.payload;
+package com.jplan.jplan.config.payload;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

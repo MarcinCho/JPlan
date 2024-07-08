@@ -1,7 +1,6 @@
 package com.jplan.jplan.entity;
 
 import java.util.Date;
-import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 

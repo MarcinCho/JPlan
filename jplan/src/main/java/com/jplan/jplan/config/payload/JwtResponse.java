@@ -1,4 +1,4 @@
-package com.jplan.jplan.payload;
+package com.jplan.jplan.config.payload;
 
 import java.util.List;
 import java.util.Base64;
@@ -17,7 +17,6 @@ public class JwtResponse {
         this.token = accessToken;
         this.username = username;
         this.roles = roles;
-        String info = "a cos tam jakos nie wiem";
     }
 
 }

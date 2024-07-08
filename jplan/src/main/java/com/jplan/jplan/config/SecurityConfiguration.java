@@ -12,21 +12,22 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.jplan.jplan.config.jwt.AuthEntryPointJwt;
-import com.jplan.jplan.config.jwt.AuthTokenFilter;;
+import com.jplan.jplan.config.jwt.AuthTokenFilter;
+import com.jplan.jplan.service.UserDetailsServiceImpl;;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    public static final String ADMIN = "GLOBAL_ADMIN";
+    public static final String ADMIN = "ADMIN";
     public static final String USER = "USER";
+    public static final String MANAGER = "MANAGMENT";
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -69,7 +70,7 @@ public class SecurityConfiguration {
         http
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority(USER, ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority(USER, ADMIN, MANAGER)
                         .requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/client/companies").hasAnyAuthority(USER)
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasAnyAuthority(USER)

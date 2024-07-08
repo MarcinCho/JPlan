@@ -1,4 +1,4 @@
-package com.jplan.jplan.config;
+package com.jplan.jplan.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
