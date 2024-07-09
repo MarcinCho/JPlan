@@ -10,20 +10,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "punch_card")
+@Table(name = "time_card")
 @Data
-public class PunchCard {
+@NoArgsConstructor
+@AllArgsConstructor
+public class TimeCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "pc_id")
-    private String pcId;
+    @Column(name = "tc_id")
+    private String tcId;
 
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "username")
+    private String username;
 
     @CurrentTimestamp
     @Column(name = "start_time")
@@ -37,5 +41,8 @@ public class PunchCard {
 
     @Column(name = "edited")
     private Boolean edited;
+
+    @Column(name = "project_id")
+    private String projectId;
 
 }

@@ -6,8 +6,12 @@ import { Route, Routes } from 'react-router-dom';
 import { Home } from './components/Home';
 import { Register } from './components/Register';
 import { Profile } from './components/Profile';
-import { Navbar } from './components/NavbarAndFooter/Navbar';
-import { Footer } from './components/NavbarAndFooter/Footer';
+import { Navbar } from './components/Additionals/Navbar';
+import { Footer } from './components/Additionals/Footer';
+import { About } from './components/Additionals/About';
+import { Company } from './components/Company/Company';
+import { CompanyList } from './components/Company/CompanyList';
+import { TimeCard } from './components/TimeCard/TimeCard';
 
 export const App: React.FC = () => {
   return (
@@ -18,6 +22,9 @@ export const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/companies" element={<CompanyList />} />
+        <Route path="/timecard" element={<TimeCard />} />
       </Routes>
       <Footer />
     </div>

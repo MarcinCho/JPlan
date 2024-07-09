@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import CompanyModel from "../models/CompanyModel";
 import { Company } from "./Company";
+import authHeader from "../../services/auth-header";
+import axios from "axios";
 
 export const CompanyList = () => {
   const [companies, setCompanies] = useState<CompanyModel[]>([]);
   const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
+    const header = authHeader();
+    console.log(header);
+
     const fetchCompanyList = async () => {
-      const companyUrl: string = `http://localhost:8080/client/companies`;
-      const responseCompanies = await fetch(companyUrl);
+      const companyUrl: string = `http://localhost:8080/api/companies`;
+      const responseCompanies = await fetch(companyUrl, {
+        method: "GET",
+        headers: header,
+      });
 
       if (!responseCompanies.ok) {
         throw new Error("Somethin went wrong");

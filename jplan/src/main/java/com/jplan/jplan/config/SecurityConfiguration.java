@@ -25,9 +25,9 @@ import com.jplan.jplan.service.UserDetailsServiceImpl;;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    public static final String ADMIN = "ADMIN";
-    public static final String USER = "USER";
-    public static final String MANAGER = "MANAGMENT";
+    public static final String USER = "USER"; // role_id == 1
+    public static final String ADMIN = "ADMIN"; // role_id == 2
+    public static final String MANAGER = "MANAGMENT"; // role_id == 3
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;

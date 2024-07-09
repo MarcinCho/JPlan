@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
-import { config } from './Constants';
+
 
 
 interface User {

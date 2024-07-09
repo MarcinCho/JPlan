@@ -1,21 +1,17 @@
 import { NavLink } from "react-router-dom";
-// import { useOktaAuth } from "@okta/okta-react";
-// import { SpinnnerLoading } from "../Utils/SpinnerLoading";
 import React from "react";
+import { AuthProvider } from "../misc/AuthContext";
 
 export const Navbar = () => {
-  //   const { oktaAuth, authState } = useOktaAuth();
 
-  //   if (!authState) {
-  //     return <SpinnnerLoading />;
-  //   }
-
-  //   const handleLogout = async () => oktaAuth.signOut();
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <span className="navbar-brand">What2read.dev</span>
+        <span className="navbar-brand">J-Plan</span>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,28 +30,19 @@ export const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <a className="nav-link" href="#">
                 About
               </a>
-            </li> */}
+            </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/search">
-                Search books
+                Search projects
               </NavLink>
             </li>
           </ul>
           <ul className="navbar_nav ms-auto">
-            <li className="nav-item m-1">
-              <NavLink
-                type="button"
-                className="btn btn-outline-light"
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
-            {/* {!authState.isAuthenticated ? (
+            {localStorage.getItem('user') == null ? (
               <li className="nav-item m-1">
                 <NavLink
                   type="button"
@@ -74,7 +61,7 @@ export const Navbar = () => {
                   Log out
                 </button>
               </li>
-            )} */}
+            )}
           </ul>
         </div>
       </div>

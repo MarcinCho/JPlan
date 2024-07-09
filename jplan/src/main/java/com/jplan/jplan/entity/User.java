@@ -40,9 +40,6 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    // @Column(name = "company_id")
-    // private String companyId;
-
     @Column(name = "user_email", nullable = false)
     private String userEmail;
 

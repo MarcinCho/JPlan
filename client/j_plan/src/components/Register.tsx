@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { login, register } from "../services/auth.service";
+import { register } from "../services/auth.service";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import IUser from "../types/user";
 
@@ -85,7 +85,7 @@ export const Register: React.FC<Props> = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="password"> Email </label>
+                                    <label htmlFor="password"> Password </label>
                                     <Field name="password" type="password" className="form-control" />
                                     <ErrorMessage
                                         name="password"

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
 interface User {
-    // Define the shape of your user object here
     id: string;
     name: string;
 }

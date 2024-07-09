@@ -5,15 +5,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jplan.jplan.config.jwt.UtilsJwt;
 import com.jplan.jplan.config.payload.JwtResponse;
 import com.jplan.jplan.config.payload.LoginRequest;
+import com.jplan.jplan.config.payload.MessageResponse;
+import com.jplan.jplan.config.payload.RegisterRequest;
 import com.jplan.jplan.entity.User;
 import com.jplan.jplan.entity.UserDetailsImp;
 import com.jplan.jplan.repository.RoleRepository;
 import com.jplan.jplan.repository.UserRepository;
 import com.jplan.jplan.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -54,17 +52,6 @@ public class AuthorizationController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
-    }
-
-    @GetMapping("/user")
-    @PreAuthorize("hasRole('MODERATOR') or hasAuthority('GLOBAL_ADMIN')")
-    public String userAccess() {
-        return "User Content.";
-    }
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -81,26 +68,21 @@ public class AuthorizationController {
                 roles));
     }
 
-    @PostMapping("/register/user")
-    public User register(@RequestBody User user) {
-        return service.saveUser(user);
-    }
-
     @PostMapping("/register")
-    public String postMethodNme(@RequestBody String entity) {
-        // TODO: process POST request
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+        if (userRepo.existsByUsername(registerRequest.getUsername())) {
+            return ResponseEntity.badRequest().body("Username is already taken");
+        }
+        if (userRepo.existsByUserEmail(registerRequest.getUserEmail())) {
+            return ResponseEntity.badRequest().body("Email is already connected to other account :(");
+        }
 
-        return entity;
+        User user = new User(registerRequest.getUsername(), registerRequest.getPassword(), null, null,
+                registerRequest.getUserEmail(), null, null, null, null);
+
+        service.saveUser(user);
+
+        return ResponseEntity.ok(new MessageResponse("Added user"));
+
     }
-
-    @GetMapping("token")
-    public CsrfToken getCsrfToken(HttpServletRequest request) {
-        return (CsrfToken) request.getAttribute("_csrf");
-    }
-
-    @GetMapping("/hello")
-    public String hello(HttpServletRequest request) {
-        return "Hello user with sesion id: " + request.getSession().getId();
-    }
-
 }
