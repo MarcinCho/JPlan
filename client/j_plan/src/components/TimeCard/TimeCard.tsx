@@ -1,8 +1,6 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import { InputText } from 'primereact/inputtext';
+import React, { useState } from "react";
 import { getCurrentUser } from "../../services/auth.service";
-import * as Yup from "yup";
-import { start } from "repl";
 
 
 type Props = {}
@@ -18,6 +16,9 @@ export const TimeCard: React.FC<Props> = () => {
         const { username, start_date } = formValue;
     }
 
+    const [text, setText] = useState('');
+
+
 
     return (
         <div className="col-md-12">
@@ -28,6 +29,10 @@ export const TimeCard: React.FC<Props> = () => {
                         <input name="username" type='text' className="form-control" value={currentUser.username} />
                     </div>
 
+                    <div className="form-group p-3 text-center">
+                        <label htmlFor="comment">Comment</label>
+                        <InputText value={text} />
+                    </div>
 
                     <div className="form-group">
                         <label htmlFor="projectName">Project Name</label>
