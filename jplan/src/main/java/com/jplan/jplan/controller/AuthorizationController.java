@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jplan.jplan.config.jwt.UtilsJwt;
-import com.jplan.jplan.config.payload.JwtResponse;
-import com.jplan.jplan.config.payload.LoginRequest;
-import com.jplan.jplan.config.payload.MessageResponse;
-import com.jplan.jplan.config.payload.RegisterRequest;
 import com.jplan.jplan.entity.User;
 import com.jplan.jplan.entity.UserDetailsImp;
+import com.jplan.jplan.models.requests.LoginRequest;
+import com.jplan.jplan.models.requests.RegisterRequest;
+import com.jplan.jplan.models.response.JwtResponse;
+import com.jplan.jplan.models.response.MessageResponse;
 import com.jplan.jplan.repository.RoleRepository;
 import com.jplan.jplan.repository.UserRepository;
 import com.jplan.jplan.service.UserService;
+import com.jplan.jplan.utils.UtilsJwt;
 
 import jakarta.validation.Valid;
 

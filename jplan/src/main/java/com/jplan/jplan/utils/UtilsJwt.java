@@ -1,4 +1,4 @@
-package com.jplan.jplan.config.jwt;
+package com.jplan.jplan.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -31,6 +31,10 @@ public class UtilsJwt {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    String getCleanToken(String token) {
+        return token.replace("Bearer ", "");
+    }
+
     @Value("${jplan.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
@@ -47,6 +51,7 @@ public class UtilsJwt {
     }
 
     public String getUsernameFromJwt(String token) {
+        token = getCleanToken(token);
         return Jwts.parser().verifyWith(getSecretKey()).build().parseSignedClaims(token).getPayload().getSubject();
     }
 

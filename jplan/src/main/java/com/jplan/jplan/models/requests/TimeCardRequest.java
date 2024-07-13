@@ -1,8 +1,6 @@
-package com.jplan.jplan.config.payload;
+package com.jplan.jplan.models.requests;
 
 import java.sql.Date;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
@@ -11,12 +9,15 @@ public class TimeCardRequest {
 
     private String username;
 
-    @CreationTimestamp
     private Date start_time;
+
+    private Date stop_time;
 
     private boolean active;
 
     private boolean edited;
 
     private String projectId;
+
+    private String comment;
 }

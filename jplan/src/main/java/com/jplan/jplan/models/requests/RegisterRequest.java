@@ -1,15 +1,12 @@
-package com.jplan.jplan.config.payload;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+package com.jplan.jplan.models.requests;
 
 import java.util.Set;
-
-import org.hibernate.validator.constraints.pl.PESEL;
 
 import com.jplan.jplan.entity.Role;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class RegisterRequest {
 

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jplan.jplan.entity.Project;
+import com.jplan.jplan.entity.Role;
 import com.jplan.jplan.entity.User;
 import com.jplan.jplan.repository.UserRepository;
 
@@ -25,6 +26,19 @@ public class UserService {
 
     public Set<Project> getUserProjects(User user) {
         return user.getProjects();
+    }
+
+    public boolean checkUserAuthorieties(String username, String roleName) {
+        User user = repository.findByUsername(username);
+        Set<Role> roles = user.getRoles();
+
+        for (Role role : roles) {
+            if (role.getName().equals(roleName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

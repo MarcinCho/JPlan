@@ -45,4 +45,7 @@ public class TimeCard {
     @Column(name = "project_id")
     private String projectId;
 
+    @Column(name = "comment")
+    private String comment;
+
 }

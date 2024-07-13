@@ -1,4 +1,4 @@
-package com.jplan.jplan.config.payload;
+package com.jplan.jplan.models.response;
 
 public class MessageResponse {
 
