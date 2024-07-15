@@ -47,6 +47,7 @@ public class TimeCardController {
     @PostMapping()
     public ResponseEntity<?> createTimeCard(@RequestBody TimeCardRequest tcRequest,
             @RequestHeader(value = "Authorization") String token) {
+        System.out.println(tcRequest.toString());
         tcRequest.setUsername(utilsJwt.getUsernameFromJwt(token));
         tcService.saveTimeCard(tcRequest);
         return ResponseEntity.ok(new MessageResponse("New time card created"));

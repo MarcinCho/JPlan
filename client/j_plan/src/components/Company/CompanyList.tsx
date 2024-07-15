@@ -23,7 +23,6 @@ export const CompanyList = () => {
         throw new Error("Somethin went wrong");
       }
       const responseJsonCompanies = await responseCompanies.json();
-      // const responseData = responseJsonCompanies._embedded.companies;
       const responseData = responseJsonCompanies;
 
       const loadedCompanies: CompanyModel[] = [];

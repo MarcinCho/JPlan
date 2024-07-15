@@ -22,7 +22,6 @@ public class TimeCardService {
 
     public TimeCard saveTimeCard(TimeCardRequest timeCardReq) {
         TimeCard timeCard = new TimeCard();
-        timeCard.setProjectId(timeCardReq.getProjectId());
         timeCard.setUsername(timeCardReq.getUsername());
         timeCard.setActive(timeCardReq.isActive());
         timeCard.setEdited(timeCardReq.isEdited());

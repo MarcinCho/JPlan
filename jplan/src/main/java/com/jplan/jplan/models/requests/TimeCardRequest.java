@@ -9,15 +9,15 @@ public class TimeCardRequest {
 
     private String username;
 
-    private Date start_time;
+    // private Date start_time;
 
-    private Date stop_time;
+    // private Date stop_time;
 
     private boolean active;
 
     private boolean edited;
 
-    private String projectId;
+    // private String projectId;
 
     private String comment;
 }
